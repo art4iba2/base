@@ -1,0 +1,48 @@
+﻿@using WebApplication7.Models
+@model List<SkiResortModel>
+
+<h1>Лыжные курорты</h1>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Название курорта</th>
+                <th>Город</th>
+                <th>Дата открытия</th>
+                <th>Количество горнолыжных трасс</th>
+                <th>Средняя длина трассы</th>
+                <th>Ежегодный общий доход</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @while (Model.Any())
+            {
+                var skiResort = Model.First();
+                Model.Remove(skiResort);    
+
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => skiResort.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => skiResort.City)</td>
+                    <td>@Html.DisplayFor(modelItem => skiResort.OpenDate)</td>
+                    <td>@Html.DisplayFor(modelItem => skiResort.NumberOfSkiSlopes)</td>
+                    <td>@Html.DisplayFor(modelItem => skiResort.AverageSlopeLength)</td>
+                    <td>@Html.DisplayFor(modelItem => skiResort.AnnualRevenue)</td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <p>Нет данных.</p>
+}
+<div>
+    @Html.ActionLink("Добавить новый курорт", "Create")
+</div>
+

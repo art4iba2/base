@@ -1,0 +1,52 @@
+﻿@model WebApplication7.Models.SkiResortModel
+
+<h2>Добавление нового курорта</h2>
+
+@using (Html.BeginForm("Create", "SkiResort", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.City, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OpenDate, new { @class = "control-label" })
+        @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.OpenDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberOfSkiSlopes, new { @class = "control-label" })
+        @Html.EditorFor(model => model.NumberOfSkiSlopes, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NumberOfSkiSlopes, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AverageSlopeLength, new { @class = "control-label" })
+        @Html.EditorFor(model => model.AverageSlopeLength, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AverageSlopeLength, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnnualRevenue, new { @class = "control-label" })
+        @Html.EditorFor(model => model.AnnualRevenue, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AnnualRevenue, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-primary" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Назад к списку курортов", "Index")
+</div>
