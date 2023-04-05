@@ -1,9 +1,7 @@
-﻿@using WebApplication7.Models
+@using WebApplication7.Models
 @model List<SkiResortModel>
 
-<h1>Лыжные курорты</h1>
-
-@if (Model.Any())
+@helper RenderSkiResortsTable(List<SkiResortModel> resorts)
 {
     <table>
         <thead>
@@ -19,10 +17,10 @@
             </tr>
         </thead>
         <tbody>
-            @while (Model.Any())
+            @while (resorts.Any())
             {
-                var skiResort = Model.First();
-                Model.Remove(skiResort);    
+                var skiResort = resorts.First();
+                resorts.Remove(skiResort);
 
                 <tr>
                     <td>@Html.DisplayFor(modelItem => skiResort.Name)</td>
@@ -31,18 +29,23 @@
                     <td>@Html.DisplayFor(modelItem => skiResort.NumberOfSkiSlopes)</td>
                     <td>@Html.DisplayFor(modelItem => skiResort.AverageSlopeLength)</td>
                     <td>@Html.DisplayFor(modelItem => skiResort.AnnualRevenue)</td>
-
                 </tr>
             }
         </tbody>
-
     </table>
+}
+
+<h1>Лыжные курорты</h1>
+
+@if (Model.Any())
+{
+    @RenderSkiResortsTable(Model)
 }
 else
 {
     <p>Нет данных.</p>
 }
+
 <div>
     @Html.ActionLink("Добавить новый курорт", "Create")
 </div>
-
